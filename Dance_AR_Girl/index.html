@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dance_AR_Girl</title>
-    <!-- Подключите A-Frame и Echo3D SDK -->
+    <title>Dance AR Girl</title>
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echo3d@1.7.9/umd/echo3D.js"></script>
 </head>
 <body>
     <a-scene>
-        <!-- Контейнер для модели -->
-        <a-entity id="echo3d-model"></a-entity>
+        <!-- Освещение -->
+        <a-light type="ambient" color="#FFF" intensity="1"></a-light>
+        <a-light type="point" position="0 5 5" intensity="2"></a-light>
+
+        <!-- Ресурсы -->
+        <a-assets>
+            <a-asset-item id="model" src="model.glb"></a-asset-item>
+        </a-assets>
+
+        <!-- Модель с анимацией -->
+        <a-entity 
+            gltf-model="#model" 
+            scale="0.3 0.3 0.3" 
+            animation-mixer
+            position="0 -1 0">
+        </a-entity>
+
         <!-- Камера -->
-        <a-camera position="0 0 5"></a-camera>
+        <a-camera position="0 0 10"></a-camera>
     </a-scene>
-
-    <script>
-        // Ваши ключи из Echo3D
-        const apiKey = '5GNTbtsNauflKR6T3fiqO5aQ'; // Замените на свой API Key
-        const entryId = '1a6878cc-069d-4e0b-8690-8f98ac50827a'; // Замените на Entry ID модели
-
-        // Загрузка модели через Echo3D
-        Echo3D.init({ apiKey })
-            .then(api => api.getEntryURL(entryId))
-            .then(modelUrl => {
-                const model = document.getElementById('echo3d-model');
-                model.setAttribute('gltf-model', modelUrl`);
-                model.setAttribute('scale', '0.5 0.5 0.5'); // Настройте масштаб
-            })
-            .catch(error => console.error('Ошибка:', error));
-    </script>
 </body>
-</html> 
+</html>
+
+
+
+
+
+
+
+
+
+
