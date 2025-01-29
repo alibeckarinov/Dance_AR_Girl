@@ -24,7 +24,7 @@
             .then(api => api.getEntryURL(entryId))
             .then(modelUrl => {
                 const model = document.getElementById('echo3d-model');
-                model.setAttribute('gltf-model', `url(${modelUrl})`);
+                model.setAttribute('gltf-model', modelUrl`);
                 model.setAttribute('scale', '0.05 0.05 0.05'); // Настройте масштаб
             })
             .catch(error => console.error('Ошибка:', error));
